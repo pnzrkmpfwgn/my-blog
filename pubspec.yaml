@@ -28,6 +28,7 @@ environment:
 # versions available, run `flutter pub outdated`.
 dependencies:
   flutter_spinkit: ^5.1.0
+  carousel_slider: ^4.1.1
   flutter:
     sdk: flutter
 
