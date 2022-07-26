@@ -57,11 +57,11 @@ class _HomeState extends State<Home> {
                 child: screenWidth > 768 ? Navigation() : mobileView()
             ),
             Positioned(
-              width: MediaQuery.of(context).size.width,
-                height: 300,
-                top:300,
+              width: screenWidth,
+                height: screenHeight,
+                top:150,
                 left:0,
-                child: Carousel())
+                child: screenWidth <= 1440 ? mobileCarousel() : Carousel())
           ],
         )
     );
