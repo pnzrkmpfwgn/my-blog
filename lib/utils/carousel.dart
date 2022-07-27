@@ -15,6 +15,21 @@ class _CarouselState extends State<Carousel> {
     "assets/3.jpg",
   ];
 
+  late double opacity=0.0;
+  late double opacitytxt=0.0;
+  @override
+  void initState(){
+    super.initState();
+
+    Future.delayed(Duration(seconds: 2)).then((value)=>{
+      setState((){
+        opacity=1.0;
+        opacitytxt = 0.8;
+
+      })
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -33,13 +48,6 @@ class _CarouselState extends State<Carousel> {
                   ),
                 ),
               ),
-              //   Image.asset(
-              //     item,
-              //     width: MediaQuery.of(context).size.width,
-              //     height:MediaQuery.of(context).size.height,
-              //     fit: BoxFit.fill,
-              //     color: Colors.black.withOpacity(0.01),
-              // ),
               Positioned(
                   child:Container(
                         child: Column(
@@ -47,32 +55,36 @@ class _CarouselState extends State<Carousel> {
                           children: [
                             Row(
                               children: [
-                                Text("Category    ",
-                                    style:TextStyle(
-                                        color:Colors.white.withOpacity(0.8)
-                                    )
-                                ),
+                                AnimatedDefaultTextStyle(child: Text("Category    ",), style: TextStyle(
+                                  color:Colors.white.withOpacity(opacitytxt),
+                                ), duration: Duration(seconds: 1)),
+                                AnimatedDefaultTextStyle(child:
                                 Text("Posted by  ",
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      color:Colors.white
-                                  ),
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold
                                 ),
-                                Text("Name",
-                                  style: TextStyle(
-                                      color:Colors.white.withOpacity(0.8)
-                                  ),
-                                )
+                                ),
+                                    style: TextStyle(
+                                      color: Colors.white.withOpacity(opacity)
+                                    ),
+                                    duration: Duration(seconds: 1)),
+                                AnimatedDefaultTextStyle(child: Text("Name"),
+                                    style:TextStyle(
+                                      color: Colors.white.withOpacity(opacitytxt)
+                                    ) ,
+                                    duration: Duration(seconds: 1)),
                               ],
                             ),
-                            Text(
-                                "Lorem ipsum dolor sit amet",
+                            AnimatedDefaultTextStyle(
+                                child: Text("Lorem ipsum dolor sit amet",
                                 style:TextStyle(
                                     fontSize:60.0,
-                                    color:Colors.white,
                                     fontFamily: "DMSerifText"
-                                )
-                            ),
+                                ),
+                                ),
+                                style: TextStyle(
+                                  color: Colors.white.withOpacity(opacity),
+                                ), duration: Duration(milliseconds: 1500)),
                           ],),
 
                   ),
