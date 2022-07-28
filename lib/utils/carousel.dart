@@ -114,6 +114,21 @@ class _mobileCarouselState extends State<mobileCarousel> {
 
   ];
 
+  late double opacity=0.0;
+  late double opacitytxt=0.0;
+  @override
+  void initState(){
+    super.initState();
+
+    Future.delayed(Duration(seconds: 2)).then((value)=>{
+      setState((){
+        opacity=1.0;
+        opacitytxt = 0.8;
+
+      })
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -143,32 +158,36 @@ class _mobileCarouselState extends State<mobileCarousel> {
                     children: [
                       Row(
                         children: [
-                          Text("Category    ",
-                              style:TextStyle(
-                                  color:Colors.white.withOpacity(0.8)
-                              )
-                          ),
+                          AnimatedDefaultTextStyle(child: Text("Category    ",), style: TextStyle(
+                            color:Colors.white.withOpacity(opacitytxt),
+                          ), duration: Duration(seconds: 1)),
+                          AnimatedDefaultTextStyle(child:
                           Text("Posted by  ",
                             style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                color:Colors.white
+                                fontWeight: FontWeight.bold
                             ),
                           ),
-                          Text("Name",
-                            style: TextStyle(
-                                color:Colors.white.withOpacity(0.8)
-                            ),
-                          )
+                              style: TextStyle(
+                                  color: Colors.white.withOpacity(opacity)
+                              ),
+                              duration: Duration(seconds: 1)),
+                          AnimatedDefaultTextStyle(child: Text("Name"),
+                              style:TextStyle(
+                                  color: Colors.white.withOpacity(opacitytxt)
+                              ) ,
+                              duration: Duration(seconds: 1)),
                         ],
                       ),
-                      Text(
-                          "Lorem ipsum dolor sit amet",
-                          style:TextStyle(
-                              fontSize:60.0,
-                              color:Colors.white,
-                              fontFamily: "DMSerifText"
-                          )
-                      ),
+                      AnimatedDefaultTextStyle(
+                          child: Text("Lorem ipsum dolor sit amet",
+                            style:TextStyle(
+                                fontSize:60.0,
+                                fontFamily: "DMSerifText"
+                            ),
+                          ),
+                          style: TextStyle(
+                            color: Colors.white.withOpacity(opacity),
+                          ), duration: Duration(milliseconds: 1500)),
                     ],
                   ),
                   top: 350,
