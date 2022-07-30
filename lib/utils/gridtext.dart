@@ -30,7 +30,6 @@ class GridText extends StatelessWidget {
   );
 
   Widget buildNumber(String number) => Container(
-    padding: EdgeInsets.all(50),
 
     color: Colors.white,
     child: Container(
