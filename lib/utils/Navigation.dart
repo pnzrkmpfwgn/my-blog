@@ -78,10 +78,8 @@ class _NavigationState extends State<Navigation> {
               );
             }, icon:  Icon(Icons.search,color: Colors.white,size: 30,))
           ],
-
         )
     );
-
 
     return Scaffold(
       // endDrawer: drawer(),

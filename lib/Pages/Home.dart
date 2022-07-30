@@ -1,9 +1,11 @@
 import 'package:blog/utils/content_view.dart';
+import 'package:blog/utils/gridtext.dart';
 import 'package:flutter/material.dart';
 import 'package:blog/utils/custom_tab.dart';
 import 'package:blog/utils/search.dart';
 import 'package:blog/utils/Navigation.dart';
 import 'package:blog/utils/carousel.dart';
+
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -44,25 +46,49 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     screenWidth = MediaQuery.of(context).size.width;
     screenHeight = MediaQuery.of(context).size.height;
+
+    final List _items = List.generate(12, (index) {
+      return "Item $index";
+    });
+
     return Scaffold(
       endDrawer: drawer(),
         key: scaffoldKey,
-        body:Stack(
-          children:[
-            Positioned(
-                width: MediaQuery.of(context).size.width,
-                height: 200,
-                top:0,
-                left:0,
-                child: screenWidth > 768 ? Navigation() : mobileView()
-            ),
-            Positioned(
-              width: screenWidth,
-                height: screenHeight,
-                top:150,
-                left:0,
-                child: screenWidth <= 1440 ? mobileCarousel() : Carousel())
-          ],
+        body:LayoutBuilder(
+          builder: (context,constrains)=> SingleChildScrollView(
+            child:ConstrainedBox(
+              constraints: BoxConstraints(
+                minHeight: constrains.minHeight,
+              ),
+              child:IntrinsicHeight(
+                child: Column(
+                children:<Widget> [
+                  Flexible(child: screenWidth > 768 ? Navigation() : mobileView(),flex: 1,fit:FlexFit.tight,),
+                  Flexible(child: screenWidth > 1440 ? Carousel() : mobileCarousel(),flex: screenWidth >= 1440 ? 7 :6,fit:FlexFit.tight),
+                  Flexible(child:Container(margin:EdgeInsets.only(top:50,right: 100,left:100,bottom:50),child:GridText(),),flex:10 ),
+                ],
+                ),
+
+              )
+              //   Stack(
+              //   children:[
+              //     Positioned(
+              //         width: MediaQuery.of(context).size.width,
+              //         height: 200,
+              //         top:0,
+              //         left:0,
+              //         child: screenWidth > 768 ? Navigation() : mobileView()
+              //     ),
+              //     Positioned(
+              //         width: screenWidth,
+              //         height: screenHeight,
+              //         top:150,
+              //         left:0,
+              //         child: screenWidth <= 1440 ? mobileCarousel() : Carousel()),
+              //   ],
+              // ),
+            )
+          ),
         )
     );
   }
@@ -101,8 +127,6 @@ class _HomeState extends State<Home> {
           ],
         )
     );
-
-
   }
 
   Widget drawer(){
