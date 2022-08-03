@@ -1,3 +1,4 @@
+// import 'package:blog/Pages/Loading.dart';
 import 'package:blog/utils/content_view.dart';
 import 'package:blog/utils/gridtext.dart';
 import 'package:flutter/material.dart';
@@ -14,12 +15,29 @@ class Home extends StatefulWidget {
   State<Home> createState() => _HomeState();
 }
 
-class _HomeState extends State<Home> {
+class _HomeState extends State<Home> with TickerProviderStateMixin {
 
   var scaffoldKey =GlobalKey<ScaffoldState>();
 
   late double screenWidth;
   late double screenHeight;
+
+  late AnimationController _animationController;
+
+  @override
+  void initState(){
+    _animationController = AnimationController(
+      vsync: this,
+      duration: Duration(milliseconds:1000),
+    );
+    super.initState();
+  }
+
+  @override
+  void dispose(){
+    _animationController.dispose();
+    super.dispose();
+  }
 
   List<ContentView> contentViews =[
     ContentView(tab: CustomTab(title:"Home"), content: Center(
@@ -46,50 +64,60 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     screenWidth = MediaQuery.of(context).size.width;
     screenHeight = MediaQuery.of(context).size.height;
-
-    final List _items = List.generate(12, (index) {
-      return "Item $index";
-    });
+    var scrollAmount=0.0;
+    // final List _items = List.generate(12, (index) {
+    //   return "Item $index";
+    // });
 
     return Scaffold(
+      backgroundColor: Colors.white,
       endDrawer: drawer(),
         key: scaffoldKey,
-        body:LayoutBuilder(
+        body:NotificationListener(
+          onNotification: (ScrollNotification notification){
+            scrollAmount = notification.metrics.pixels;
+            if(scrollAmount > 600){
+              _animationController.forward();
+            }
+            return true;
+          },
+          child: LayoutBuilder(
           builder: (context,constrains)=> SingleChildScrollView(
-            child:ConstrainedBox(
-              constraints: BoxConstraints(
-                minHeight: constrains.minHeight,
-              ),
-              child:IntrinsicHeight(
-                child: Column(
-                children:<Widget> [
-                  Flexible(child: screenWidth > 768 ? Navigation() : mobileView(),flex: 1,fit:FlexFit.tight,),
-                  Flexible(child: screenWidth > 1440 ? Carousel() : mobileCarousel(),flex: screenWidth >= 1440 ? 7 :6,fit:FlexFit.tight),
-                  Flexible(child:Container(margin:EdgeInsets.only(top:50,right: 100,left:100,bottom:50),child:GridText(),),flex:10 ),
-                ],
-                ),
+              child:ConstrainedBox(
+                  constraints: BoxConstraints(
+                    minHeight: constrains.minHeight,
+                  ),
+                  child:IntrinsicHeight(
+                    child: Column(
+                      children:<Widget> [
+                        // Positioned(child: Loading()),
+                        Flexible(child: screenWidth > 768 ? Navigation() : mobileView(),flex: 1,fit:FlexFit.tight,),
+                        Flexible(child: screenWidth > 1440 ? Carousel() : mobileCarousel(),flex: screenWidth >= 1440 ? 7 :6,fit:FlexFit.tight),
+                        Flexible(child:FadeTransition(opacity: _animationController, child: Container(margin:EdgeInsets.only(top:150,right: 100,left:100,bottom:50),child:GridText(),),),flex:12 ),
+                      ],
+                    ),
 
+                  )
+                //   Stack(
+                //   children:[
+                //     Positioned(
+                //         width: MediaQuery.of(context).size.width,
+                //         height: 200,
+                //         top:0,
+                //         left:0,
+                //         child: screenWidth > 768 ? Navigation() : mobileView()
+                //     ),
+                //     Positioned(
+                //         width: screenWidth,
+                //         height: screenHeight,
+                //         top:150,
+                //         left:0,
+                //         child: screenWidth <= 1440 ? mobileCarousel() : Carousel()),
+                //   ],
+                // ),
               )
-              //   Stack(
-              //   children:[
-              //     Positioned(
-              //         width: MediaQuery.of(context).size.width,
-              //         height: 200,
-              //         top:0,
-              //         left:0,
-              //         child: screenWidth > 768 ? Navigation() : mobileView()
-              //     ),
-              //     Positioned(
-              //         width: screenWidth,
-              //         height: screenHeight,
-              //         top:150,
-              //         left:0,
-              //         child: screenWidth <= 1440 ? mobileCarousel() : Carousel()),
-              //   ],
-              // ),
-            )
           ),
-        )
+        ),)
     );
   }
 

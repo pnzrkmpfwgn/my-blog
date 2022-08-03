@@ -15,7 +15,7 @@ class GridText extends StatelessWidget {
   Widget buildGridView() => GridView.builder(
     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
       crossAxisCount: 4,
-      childAspectRatio: 1,
+      childAspectRatio: 0.8,
       mainAxisSpacing: 1,
       crossAxisSpacing: 1,
     ),
@@ -35,7 +35,9 @@ class GridText extends StatelessWidget {
     child: Container(
 
         decoration: BoxDecoration(
-            border: Border.all(color: Colors.black)
+            border: Border(
+                right: BorderSide(width: 0.1,color:Colors.black12,),
+                bottom:BorderSide(width: 0.1,color:Colors.black12,) ),
         ),
         child:GridTile(
           header: Text(
