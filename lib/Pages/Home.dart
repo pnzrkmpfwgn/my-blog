@@ -1,4 +1,4 @@
-// import 'package:blog/Pages/Loading.dart';
+import 'package:blog/Pages/Loading.dart';
 import 'package:blog/utils/content_view.dart';
 import 'package:blog/utils/gridtext.dart';
 import 'package:flutter/material.dart';
@@ -21,8 +21,11 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
 
   late double screenWidth;
   late double screenHeight;
+  late bool showLoading=true;
 
   late AnimationController _animationController;
+  late AnimationController _animationController2;
+  late Animation<double> _animation;
 
   @override
   void initState(){
@@ -30,12 +33,24 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
       vsync: this,
       duration: Duration(milliseconds:1000),
     );
+    _animationController2 = AnimationController(
+        vsync: this,
+        duration: Duration(seconds: 3),
+    )..repeat(reverse: true);
+    _animation = CurvedAnimation(parent: _animationController2, curve: Curves.easeIn);
+    Future.delayed(Duration(seconds:5),
+        (){
+        setState((){
+          showLoading = false;
+        });
+        });
     super.initState();
   }
 
   @override
   void dispose(){
     _animationController.dispose();
+    _animationController2.dispose();
     super.dispose();
   }
 
@@ -88,12 +103,13 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                     minHeight: constrains.minHeight,
                   ),
                   child:IntrinsicHeight(
-                    child: Column(
+                     child:showLoading ? SizedBox(width:screenWidth,height:screenHeight,child: FadeTransition(opacity: _animation,child: Loading(),),) :
+                   Column(
                       children:<Widget> [
-                        // Positioned(child: Loading()),
                         Flexible(child: screenWidth > 768 ? Navigation() : mobileView(),flex: 1,fit:FlexFit.tight,),
                         Flexible(child: screenWidth > 1440 ? Carousel() : mobileCarousel(),flex: screenWidth >= 1440 ? 7 :6,fit:FlexFit.tight),
-                        Flexible(child:FadeTransition(opacity: _animationController, child: Container(margin:EdgeInsets.only(top:150,right: 100,left:100,bottom:50),child:GridText(),),),flex:12 ),
+                        Flexible(child:FadeTransition(opacity: _animationController, child: Container(margin:EdgeInsets.only(top:150,right: 100,left:100,bottom:50),child:GridText(),),),flex:screenWidth > 426 ? 12 : 23 ),
+                        Flexible(child: Text("footer"))
                       ],
                     ),
 
