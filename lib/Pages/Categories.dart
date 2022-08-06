@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:blog/utils/custom_tab.dart';
 import 'package:blog/utils/search.dart';
 import 'package:blog/utils/Navigation.dart';
+import 'package:blog/Pages/Loading.dart';
+import 'package:blog/utils/footer.dart';
 
 
 class Categories extends StatefulWidget {
@@ -12,24 +14,49 @@ class Categories extends StatefulWidget {
   State<Categories> createState() => _CategoriesState();
 }
 
-class _CategoriesState extends State<Categories> {
+class _CategoriesState extends State<Categories> with TickerProviderStateMixin {
 
   var scaffoldKey =GlobalKey<ScaffoldState>();
 
   late double screenWidth;
   late double screenHeight;
+  late bool showLoading=true;
+
+  late AnimationController _animationController;
+  late AnimationController _animationController2;
+  late Animation<double> _animation;
+
+  void initState(){
+    _animationController = AnimationController(
+      vsync: this,
+      duration: Duration(milliseconds:1000),
+    );
+    _animationController2 = AnimationController(
+      vsync: this,
+      duration: Duration(seconds: 3),
+    )..repeat(reverse: true);
+    _animation = CurvedAnimation(parent: _animationController2, curve: Curves.easeIn);
+    Future.delayed(Duration(seconds:5),
+            (){
+          setState((){
+            showLoading = false;
+          });
+        });
+    super.initState();
+  }
+
+  @override
+  void dispose(){
+    _animationController.dispose();
+    _animationController2.dispose();
+    super.dispose();
+  }
 
   List<ContentView> contentViews =[
     ContentView(tab: CustomTab(title:"Home"), content: Center(
       child: Container(color:Colors.black,width: 100,height:100,),
     )),
     ContentView(tab: CustomTab(title:"Categories"), content: Center(
-      child: Container(color:Colors.black,width: 100,height:100,),
-    )),
-    ContentView(tab: CustomTab(title:"Blog"), content: Center(
-      child: Container(color:Colors.black,width: 100,height:100,),
-    )),
-    ContentView(tab: CustomTab(title:"Styles"), content: Center(
       child: Container(color:Colors.black,width: 100,height:100,),
     )),
     ContentView(tab: CustomTab(title:"About"), content: Center(
@@ -45,30 +72,32 @@ class _CategoriesState extends State<Categories> {
     screenWidth = MediaQuery.of(context).size.width;
     screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
-        endDrawer: drawer(),
-        key: scaffoldKey,
-        body:Stack(
-          children:[
-            Positioned(
-                width: MediaQuery.of(context).size.width,
-                height: 200,
-                top:0,
-                left:0,
-                child: screenWidth > 768 ? Navigation() : mobileView()
-            ),
-            Positioned(
-                width: MediaQuery.of(context).size.width,
-                height: 300,
-                top:300,
-                left:0,
-                child: Text("Categories"))
-          ],
-        )
+      backgroundColor: Colors.white,
+      endDrawer: drawer(),
+      key: scaffoldKey,
+      body: LayoutBuilder(
+        builder: (context,constrains)=> SingleChildScrollView(
+            child:ConstrainedBox(
+                constraints: BoxConstraints(
+                  minHeight: constrains.minHeight,
+                ),
+                child:IntrinsicHeight(
+                  // child:showLoading ? SizedBox(width:screenWidth,height:screenHeight,child: FadeTransition(opacity: _animation,child: Loading(),),) :
+                  child:Column(
+                    children:<Widget> [
+                      Flexible(child: screenWidth > 768 ? Navigation() : mobileView(),flex: 1,fit:FlexFit.tight,),
+                      Flexible(child: Footer(),flex:screenWidth < 321 ? 5 : screenWidth < 769 ? 4 : 2)
+                    ],
+                  ),
+
+                )
+            )
+        ),
+      ),
     );
   }
 
   Widget mobileView(){
-
     return Container(
         width: screenWidth,
         color: Colors.black,
@@ -101,8 +130,6 @@ class _CategoriesState extends State<Categories> {
           ],
         )
     );
-
-
   }
 
   Widget drawer(){

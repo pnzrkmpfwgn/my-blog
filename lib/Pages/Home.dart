@@ -62,12 +62,6 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
     ContentView(tab: CustomTab(title:"Categories"), content: Center(
       child: Container(color:Colors.black,width: 100,height:100,),
     )),
-    ContentView(tab: CustomTab(title:"Blog"), content: Center(
-      child: Container(color:Colors.black,width: 100,height:100,),
-    )),
-    ContentView(tab: CustomTab(title:"Styles"), content: Center(
-      child: Container(color:Colors.black,width: 100,height:100,),
-    )),
     ContentView(tab: CustomTab(title:"About"), content: Center(
       child: Container(color:Colors.black,width: 100,height:100,),
     )),

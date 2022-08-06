@@ -67,8 +67,6 @@ class _NavigationState extends State<Navigation> {
                 crossAxisAlignment:CrossAxisAlignment.center,
                 children:[_buildButtonColumn(color,'Home',context),
               _buildButtonColumn(color,'Categories',context),
-              _buildButtonColumn(color,'Blog',context),
-              _buildButtonColumn(color,'Styles',context),
               _buildButtonColumn(color,'About',context),
               _buildButtonColumn(color,'Contact',context),]),
             IconButton(onPressed: (){
