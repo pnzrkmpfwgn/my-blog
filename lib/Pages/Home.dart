@@ -6,6 +6,7 @@ import 'package:blog/utils/custom_tab.dart';
 import 'package:blog/utils/search.dart';
 import 'package:blog/utils/Navigation.dart';
 import 'package:blog/utils/carousel.dart';
+import 'package:blog/utils/footer.dart';
 
 
 class Home extends StatefulWidget {
@@ -103,13 +104,13 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                     minHeight: constrains.minHeight,
                   ),
                   child:IntrinsicHeight(
-                     child:showLoading ? SizedBox(width:screenWidth,height:screenHeight,child: FadeTransition(opacity: _animation,child: Loading(),),) :
-                   Column(
+                     // child:showLoading ? SizedBox(width:screenWidth,height:screenHeight,child: FadeTransition(opacity: _animation,child: Loading(),),) :
+                   child:Column(
                       children:<Widget> [
                         Flexible(child: screenWidth > 768 ? Navigation() : mobileView(),flex: 1,fit:FlexFit.tight,),
-                        Flexible(child: screenWidth > 1440 ? Carousel() : mobileCarousel(),flex: screenWidth >= 1440 ? 7 :6,fit:FlexFit.tight),
-                        Flexible(child:FadeTransition(opacity: _animationController, child: Container(margin:EdgeInsets.only(top:150,right: 100,left:100,bottom:50),child:GridText(),),),flex:screenWidth > 426 ? 12 : 23 ),
-                        Flexible(child: Text("footer"))
+                        Flexible(child: screenWidth > 1440 ? Carousel() : mobileCarousel(),flex: screenWidth >= 1440 ? 7 :5,fit:FlexFit.tight),
+                        Flexible(child:FadeTransition(opacity: _animationController, child: Container(margin:EdgeInsets.only(top:150,right: 100,left:100,bottom:50),child:GridText(),),),flex:screenWidth >=1440  ? 12 : screenWidth < 1025 ? 6 : 23 ),
+                        Flexible(child: Footer(),flex:2)
                       ],
                     ),
 
