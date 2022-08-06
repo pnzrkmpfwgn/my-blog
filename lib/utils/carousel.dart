@@ -89,7 +89,7 @@ class _CarouselState extends State<Carousel> {
 
                   ),
                   top: 350,
-                  left:250
+                  left: 250
               )
             ]),
           ))
@@ -131,6 +131,7 @@ class _mobileCarouselState extends State<mobileCarousel> {
 
   @override
   Widget build(BuildContext context) {
+    var screenWidth = MediaQuery.of(context).size.width;
     return Container(
         child: CarouselSlider(
           options: CarouselOptions(
@@ -179,10 +180,13 @@ class _mobileCarouselState extends State<mobileCarousel> {
                         ],
                       ),
                       AnimatedDefaultTextStyle(
-                          child: Text("Lorem ipsum dolor sit amet",
-                            style:TextStyle(
-                                fontSize:60.0,
-                                fontFamily: "DMSerifText"
+                          child: Container(
+                            width:  screenWidth < 376 ? 250 : 400,
+                            child: Text("Lorem ipsum dolor sit amet",
+                              style:TextStyle(
+                                  fontSize: screenWidth < 321? 30.0 :60.0,
+                                  fontFamily: "DMSerifText"
+                              ),
                             ),
                           ),
                           style: TextStyle(
@@ -191,7 +195,7 @@ class _mobileCarouselState extends State<mobileCarousel> {
                     ],
                   ),
                   top: 350,
-                  left:250
+                  left: screenWidth < 769 ? 50 : 250
 
               )
             ]),
