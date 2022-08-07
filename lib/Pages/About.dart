@@ -85,8 +85,36 @@ class _AboutState extends State<About> with TickerProviderStateMixin {
                       // child:showLoading ? SizedBox(width:screenWidth,height:screenHeight,child: FadeTransition(opacity: _animation,child: Loading(),),) :
                       child:Column(
                         children:<Widget> [
-                          Flexible(child: screenWidth > 768 ? Navigation() : mobileView(),flex: 1,fit:FlexFit.tight,),
-                          Flexible(child: Footer(),flex:screenWidth < 321 ? 5 : screenWidth < 769 ? 4 : 2)
+                          Flexible(child: screenWidth > 768 ? Container( child: Navigation(),) : mobileView(),flex: screenWidth < 769 ? 2 :1,),
+                          Flexible(child:  Column(
+                            children: [
+                              Container(
+                                child: Image.asset("assets/4.jpg",width: screenWidth < 769 ? 500 : 1000,),),
+                              Container(
+                                margin: EdgeInsets.only(top: 50),
+                                child: Text("About My Story",style: TextStyle(
+                                    fontFamily: "DMSerifText",
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: screenWidth < 769 ? 25 :45
+                                ),),),
+                              Container(
+                                margin: EdgeInsets.only(top: 50),
+                                width: screenWidth < 769 ? 600 : 1000,
+                                child: Text("   I am Ayberk, I am from Turkey and I study Computer Science at Eastern Mediterranean University. Due to pandemic I had to suspend my studies. ,"
+                                    "However, I deepend my knowledge on web development and cyber security. "
+                                    "I am mostly a pesimistic person, and my cyninism is ever growing since I move to Cyprus. I wasn't a social person, so that's why I am better friends with machines than people. Mostly I prefer to be alone. "
+                                    ,style: TextStyle(fontFamily: "Inter",fontSize: 25,letterSpacing: 1.2),),
+                              ),
+                              Container(
+                                margin: EdgeInsets.only(top: 50),
+                                width: screenWidth < 769 ? 600 : 1000,
+                                child: Text("   I enjoy Synthwave, Vaporwave, Futurefunk, Jazz and Japanese City Pop. Especially at night times I really like to cruise while listening to them. I enjoy melanchony of night and mellow moments of the afternoon. "
+                                    "I enjoy video games, fantastic novels, mangas and crime-noir films.",style: TextStyle(fontFamily: "Inter",fontSize: 25,letterSpacing: 1.2),),
+                              )
+                            ],
+                          ),flex: screenWidth < 769 ? 1 : 4,),
+                          Flexible(child: Container( child: Footer(),),flex: 1,)
+                          // Flexible(child: Footer(),flex:screenWidth < 321 ? 5 : screenWidth < 769 ? 4 : 2)
                         ],
                       ),
 
