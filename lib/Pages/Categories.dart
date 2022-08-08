@@ -86,7 +86,7 @@ class _CategoriesState extends State<Categories> with TickerProviderStateMixin {
                   child:Column(
                     children:<Widget> [
                       Flexible(child: screenWidth > 768 ? Navigation() : mobileView(),flex: 1,fit:FlexFit.tight,),
-                      Flexible(child: Footer(),flex:screenWidth < 321 ? 5 : screenWidth < 769 ? 4 : 2)
+                      Flexible(child: FooterDesktop(),flex:screenWidth < 321 ? 5 : screenWidth < 769 ? 4 : 2)
                     ],
                   ),
 

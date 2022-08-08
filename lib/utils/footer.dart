@@ -1,9 +1,14 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:footer/footer.dart';
+import 'package:footer/footer_view.dart';
 
-class Footer extends StatelessWidget {
-  const Footer({Key? key}) : super(key: key);
+
+
+
+class FooterDesktop extends StatelessWidget {
+  const FooterDesktop({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
