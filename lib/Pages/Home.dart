@@ -109,23 +109,6 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                     ),
 
                   )
-                //   Stack(
-                //   children:[
-                //     Positioned(
-                //         width: MediaQuery.of(context).size.width,
-                //         height: 200,
-                //         top:0,
-                //         left:0,
-                //         child: screenWidth > 768 ? Navigation() : mobileView()
-                //     ),
-                //     Positioned(
-                //         width: screenWidth,
-                //         height: screenHeight,
-                //         top:150,
-                //         left:0,
-                //         child: screenWidth <= 1440 ? mobileCarousel() : Carousel()),
-                //   ],
-                // ),
               )
           ),
         ),)
@@ -182,30 +165,3 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
     );
   }
 }
-
-//
-// class Home extends StatefulWidget {
-//   const Home({Key? key}) : super(key: key);
-//
-//   // @override
-//   // Widget build(BuildContext context) {
-//   //   return Container(
-//   //     child: Navigation(),
-//   //   );
-//   // }
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       body:Stack(
-//         children:[
-//           Positioned(
-//             width: MediaQuery.of(context).size.width,
-//             height: 200,
-//               top:0,
-//               left:0,
-//               child: Navigation())
-//         ],
-//       )
-//     );
-//   }
-// }
