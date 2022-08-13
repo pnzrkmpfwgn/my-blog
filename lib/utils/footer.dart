@@ -87,7 +87,7 @@ class FooterDesktop extends StatelessWidget {
                                 text:"GitHub",
                                 style:TextStyle(fontFamily: "Inter",
                                     letterSpacing: 0.5,
-                                    height: 1.5),
+                                    height: 1.5,color: Colors.black),
                                 recognizer: TapGestureRecognizer()..onTap = ()async{
                                   final Uri url=Uri.parse('https://github.com/pnzrkmpfwgn');
                                   if(await canLaunchUrl(url)){

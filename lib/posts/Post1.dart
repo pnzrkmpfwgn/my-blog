@@ -88,7 +88,7 @@ class _MobileViewPost1State extends State<MobileViewPost1> with TickerProviderSt
                         Flexible(child:Container(
                           margin: EdgeInsets.only(top:50),
 
-                          child: Image.asset("assets/5.jpg"),),),
+                          child: Image.asset("assets/6.jpg"),),),
                         Column(
                           children: [
                             Column(
@@ -101,7 +101,7 @@ class _MobileViewPost1State extends State<MobileViewPost1> with TickerProviderSt
                                   children: [
                                     Container(
                                       margin: EdgeInsets.only(top: 50),
-                                      child: Text("42",style: TextStyle(
+                                      child: Text("The Number 42",style: TextStyle(
                                           fontFamily: "DMSerifText",
                                           fontWeight: FontWeight.bold,
                                           fontSize: screenWidth < 769 ? 25 :45
@@ -150,7 +150,7 @@ class _MobileViewPost1State extends State<MobileViewPost1> with TickerProviderSt
                                            child:
                                            RichText(text: TextSpan(
                                                text: "Posted By\n",
-                                               style: TextStyle(fontWeight: FontWeight.bold,fontSize: 15),
+                                               style: TextStyle(fontWeight: FontWeight.bold,fontSize: 15,color:Colors.black),
                                                children: [
                                                  TextSpan(text:"Ayberk",style: TextStyle(fontWeight: FontWeight.normal))
                                                ]
@@ -170,8 +170,9 @@ class _MobileViewPost1State extends State<MobileViewPost1> with TickerProviderSt
                                      height: 200,
                                      child: Column(
                                        children: [
-                                         TextButton(onPressed: (){}, child: Text("Next",style: TextStyle(fontWeight: FontWeight.bold,color:Colors.black,fontSize: 20),)),
-                                         TextButton(onPressed: (){}, child: Text("Previous",style: TextStyle(fontWeight: FontWeight.bold,color:Colors.black,fontSize: 20),)),
+                                         TextButton(onPressed: (){}, child: Text("<Next",style: TextStyle(fontWeight: FontWeight.bold,color:Colors.black,fontSize: 20),)),
+                                         Text("---",style: TextStyle(fontWeight: FontWeight.bold,color:Colors.black,fontSize: 20),),
+                                         TextButton(onPressed: (){}, child: Text("Previous>",style: TextStyle(fontWeight: FontWeight.bold,color:Colors.black,fontSize: 20),)),
                                        ],
                                      ),
                                    ),
@@ -306,7 +307,7 @@ class _Post1State extends State<Post1> with TickerProviderStateMixin {
                     children:<Widget> [
                       Flexible(child:Container( height:200,child: Navigation(),),flex: screenWidth < 769 ?2 :1,),
                       Flexible(child:Container(
-                        child: Image.asset("assets/5.jpg",width: screenWidth < 769 ? 500 : 1000,),),),
+                        child: Image.asset("assets/6.jpg",width: screenWidth < 769 ? 500 : 1000,),),),
                       Column(
                         children: [
                           Row(
@@ -323,7 +324,7 @@ class _Post1State extends State<Post1> with TickerProviderStateMixin {
                                       child:
                                       RichText(text: TextSpan(
                                         text: "Posted By\n",
-                                        style: TextStyle(fontWeight: FontWeight.bold,fontSize: 15),
+                                        style: TextStyle(fontWeight: FontWeight.bold,fontSize: 15,color:Colors.black),
                                         children: [
                                           TextSpan(text:"Ayberk",style: TextStyle(fontWeight: FontWeight.normal))
                                         ]
@@ -343,7 +344,7 @@ class _Post1State extends State<Post1> with TickerProviderStateMixin {
                                   children: [
                                     Container(
                                       margin: EdgeInsets.only(top: 50),
-                                      child: Text("42",style: TextStyle(
+                                      child: Text("The Number 42",style: TextStyle(
                                           fontFamily: "DMSerifText",
                                           fontWeight: FontWeight.bold,
                                           fontSize: screenWidth < 769 ? 25 :45

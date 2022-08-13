@@ -103,7 +103,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                       children:<Widget> [
                         Flexible(child: screenWidth > 768 ? Navigation() : mobileView(),flex: 1,fit:FlexFit.tight,),
                         Flexible(child: screenWidth > 1440 ? Carousel() : mobileCarousel(),flex: screenWidth >= 1440 ? 7 :5,fit:FlexFit.tight),
-                        Flexible(child:FadeTransition(opacity: _animationController, child: Container(margin:EdgeInsets.only(top:150,right: 100,left:100,bottom:50),child:GridText(),),),flex:screenWidth >=1440  ? 12 : screenWidth < 1025 ? 6 : 23 ),
+                        Flexible(child:FadeTransition(opacity: _animationController, child: Container(margin:EdgeInsets.only(top:screenWidth < 426 ? 75 : 150,right:screenWidth < 426 ? 50 : 100,left: screenWidth < 426 ? 50 : 100,bottom: screenWidth < 426 ? 25 : 50),child:GridText(),),),flex:screenWidth >=1440  ? 12 : screenWidth < 1025 ?  6 : 23 ),
                         Flexible(child: FooterDesktop(),flex:screenWidth < 321 ? 5 : screenWidth < 769 ? 4 : 2)
                       ],
                     ),
