@@ -87,7 +87,7 @@ class _MobileViewPost1State extends State<MobileViewPost1> with TickerProviderSt
                         Flexible(child:Container( child: mobileView(),),flex: screenWidth < 769 ?2 :1,),
                         Flexible(child:Container(
                           margin: EdgeInsets.only(top:50),
-                          
+
                           child: Image.asset("assets/5.jpg"),),),
                         Column(
                           children: [
