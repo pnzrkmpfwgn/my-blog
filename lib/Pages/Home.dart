@@ -1,4 +1,3 @@
-import 'package:blog/Pages/Loading.dart';
 import 'package:blog/utils/content_view.dart';
 import 'package:blog/utils/gridtext.dart';
 import 'package:flutter/material.dart';
@@ -22,50 +21,37 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
 
   late double screenWidth;
   late double screenHeight;
-  late bool showLoading=true;
+  late ScrollController scrollController = ScrollController();
 
   late AnimationController _animationController;
-  late AnimationController _animationController2;
-  late Animation<double> _animation;
 
   @override
   void initState(){
     _animationController = AnimationController(
       vsync: this,
-      duration: Duration(milliseconds:1000),
+      duration: const Duration(milliseconds:1000),
     );
-    _animationController2 = AnimationController(
-        vsync: this,
-        duration: Duration(seconds: 3),
-    )..repeat(reverse: true);
-    _animation = CurvedAnimation(parent: _animationController2, curve: Curves.easeIn);
-    Future.delayed(Duration(seconds:5),
-        (){
-        setState((){
-          showLoading = false;
-        });
-        });
+
     super.initState();
   }
 
   @override
   void dispose(){
     _animationController.dispose();
-    _animationController2.dispose();
     super.dispose();
   }
 
   List<ContentView> contentViews =[
-    ContentView(tab: CustomTab(title:"Home"), content: Center(
+    ContentView(tab: const CustomTab(title:"Home"), content: Center(
       child: Container(color:Colors.black,width: 100,height:100,),
     )),
-    ContentView(tab: CustomTab(title:"Categories"), content: Center(
+    ContentView(tab: const CustomTab(title:"Categories"), content: Center(
       child: Container(color:Colors.black,width: 100,height:100,),
     )),
-    ContentView(tab: CustomTab(title:"About"), content: Center(
+    ContentView(tab: const CustomTab(title:"About"), content: Center(
       child: Container(color:Colors.black,width: 100,height:100,),
     )),
-    ContentView(tab: CustomTab(title:"Contact"), content: Center(
+    ContentView(tab: const CustomTab(title:"Contact"), content: Center(
       child: Container(color:Colors.black,width: 100,height:100,),
     )),
   ];
@@ -75,14 +61,18 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
     screenWidth = MediaQuery.of(context).size.width;
     screenHeight = MediaQuery.of(context).size.height;
     var scrollAmount=0.0;
-    // final List _items = List.generate(12, (index) {
-    //   return "Item $index";
-    // });
 
     return Scaffold(
       backgroundColor: Colors.white,
       endDrawer: drawer(),
         key: scaffoldKey,
+        floatingActionButton: FloatingActionButton(
+          backgroundColor: Colors.black,
+          child:const Icon(Icons.arrow_upward,color: Colors.white,),
+          onPressed:(){
+              scrollController.animateTo(0, duration: const Duration(seconds:2 ), curve:Curves.fastOutSlowIn);
+          }
+        ),
         body:NotificationListener(
           onNotification: (ScrollNotification notification){
             scrollAmount = notification.metrics.pixels;
@@ -93,18 +83,19 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
           },
           child: LayoutBuilder(
           builder: (context,constrains)=> SingleChildScrollView(
+            controller: scrollController,
               child:ConstrainedBox(
                   constraints: BoxConstraints(
                     minHeight: constrains.minHeight,
                   ),
                   child:IntrinsicHeight(
-                     // child:showLoading ? SizedBox(width:screenWidth,height:screenHeight,child: FadeTransition(opacity: _animation,child: Loading(),),) :
+                      // child:showLoading ? SizedBox(width:screenWidth,height:screenHeight,child: FadeTransition(opacity: _animation,child: Loading(),),) :
                    child:Column(
                       children:<Widget> [
-                        Flexible(child: screenWidth > 768 ? Navigation() : mobileView(),flex: 1,fit:FlexFit.tight,),
-                        Flexible(child: screenWidth > 1440 ? Carousel() : mobileCarousel(),flex: screenWidth >= 1440 ? 7 :5,fit:FlexFit.tight),
-                        Flexible(child:FadeTransition(opacity: _animationController, child: Container(margin:EdgeInsets.only(top:screenWidth < 426 ? 75 : 150,right:screenWidth < 426 ? 50 : 100,left: screenWidth < 426 ? 50 : 100,bottom: screenWidth < 426 ? 25 : 50),child:GridText(),),),flex:screenWidth >=1440  ? 12 : screenWidth < 1025 ?  6 : 23 ),
-                        Flexible(child: FooterDesktop(),flex:screenWidth < 321 ? 5 : screenWidth < 769 ? 4 : 2)
+                        Flexible(flex: 1,fit:FlexFit.tight,child: screenWidth > 768 ? const Navigation() : mobileView(),),
+                        Flexible(flex: screenWidth >= 1440 ? 7 :5,fit:FlexFit.tight, child: screenWidth > 1440 ?  Carousel() : mobileCarousel()),
+                        Flexible(flex:screenWidth >=1440  ? 12 : screenWidth < 1025 ?  6 : 23, child:FadeTransition(opacity: _animationController, child: Container(margin:EdgeInsets.only(top:screenWidth < 426 ? 75 : 150,right:screenWidth < 426 ? 50 : 100,left: screenWidth < 426 ? 50 : 100,bottom: screenWidth < 426 ? 25 : 50),child:GridText(),),) ),
+                        Flexible(flex:screenWidth < 321 ? 5 : screenWidth < 769 ? 4 : 2, child: const FooterDesktop())
                       ],
                     ),
 
@@ -127,7 +118,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
             Container(
               width: 200,
               height: 150,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                   image: DecorationImage(
                       image: AssetImage('assets/Logo.png',),
                       fit:BoxFit.fill
@@ -136,7 +127,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
             ),
             Row(
               children: [IconButton(onPressed: () => scaffoldKey.currentState?.openEndDrawer(),
-                iconSize: screenWidth*0.08, icon: Icon(Icons.menu_rounded),
+                iconSize: screenWidth*0.08, icon: const Icon(Icons.menu_rounded),
                 color: Colors.white,),
                 IconButton(onPressed: (){
                   showSearch(
@@ -158,7 +149,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
             Container(height: screenHeight * 0.1,)
           ] + contentViews.map((e) => Container(
             child: ListTile(title:Text(e.tab.title),onTap:(){
-              Navigator.pushReplacementNamed(context, "/" + e.tab.title.toLowerCase());
+              Navigator.pushReplacementNamed(context, "/${e.tab.title.toLowerCase()}");
             }),
           )).toList()
       ),

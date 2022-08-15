@@ -22,7 +22,7 @@ class _NavigationState extends State<Navigation> {
 
     Widget buttonSelection = Container(
         color:Colors.black,//.withOpacity(0.5),
-        padding:EdgeInsets.only(left:20.0,right: 20.0) ,
+        padding:const EdgeInsets.only(left:20.0,right: 20.0) ,
         height:150.0 ,
         child:Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -31,7 +31,7 @@ class _NavigationState extends State<Navigation> {
             Container(
               width: 200,
               height: 150,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 image: DecorationImage(
                   image: AssetImage('assets/Logo.png',),
                     fit:BoxFit.fill
@@ -50,7 +50,7 @@ class _NavigationState extends State<Navigation> {
                 context: context,
                 delegate:MySearchDelegate(),
               );
-            }, icon:  Icon(Icons.search,color: Colors.white,size: 30,))
+            }, icon:  const Icon(Icons.search,color: Colors.white,size: 30,))
           ],
         )
     );
@@ -80,7 +80,7 @@ class _NavigationState extends State<Navigation> {
             margin: const EdgeInsets.only(top:8.0),
             child: TextButton(
               onPressed:(){
-                  Navigator.pushReplacementNamed(context, "/" + label.toLowerCase());
+                  Navigator.pushReplacementNamed(context, "/${label.toLowerCase()}");
               },
 
               child:Text(

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class CustomTab extends StatefulWidget{
-  CustomTab({required this.title});
+  const CustomTab({required this.title,super.key});
 
   final String title;
 
@@ -14,8 +14,8 @@ class _CustomTabState extends State<CustomTab> {
   Widget build(BuildContext context){
     return TextButton(
           onPressed:(){},
-      child: Text(this.widget.title,
-      style:TextStyle(fontSize: 17)
+      child: Text(widget.title,
+      style:const TextStyle(fontSize: 17)
       ),
     );
   }

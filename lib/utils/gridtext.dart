@@ -1,9 +1,17 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-class GridText extends StatelessWidget {
-  final numbers = List.generate(12, (index) => '$index');
+class GridText extends StatefulWidget {
+  const GridText({Key? key}) : super(key: key);
+
+  @override
+  State<GridText> createState() => _GridTextState();
+}
+
+class _GridTextState extends State<GridText> {
+
+
   final controller = ScrollController();
+
   final List<dynamic> contents =[
     {
       "img":"assets/6.jpg",
@@ -17,21 +25,49 @@ class GridText extends StatelessWidget {
       "title":"The Number 42",
       "text":"The ultimate answer, for the ultimate question, 42. Adams Douglas, introduces this concept in his book The Hitchhiker's Guide to the Galaxy in a BBC News report...",
       "by":"Ayberk",
-      "route":"post1"
+      "route":"post2"
     },
     {
       "img":"assets/6.jpg",
       "title":"The Number 42",
       "text":"The ultimate answer, for the ultimate question, 42. Adams Douglas, introduces this concept in his book The Hitchhiker's Guide to the Galaxy in a BBC News report...",
       "by":"Ayberk",
-      "route":"post1"
+      "route":"post3"
     },
     {
       "img":"assets/6.jpg",
       "title":"The Number 42",
       "text":"The ultimate answer, for the ultimate question, 42. Adams Douglas, introduces this concept in his book The Hitchhiker's Guide to the Galaxy in a BBC News report...",
       "by":"Ayberk",
-      "route":"post1"
+      "route":"post4"
+    },
+    {
+      "img":"assets/6.jpg",
+      "title":"The Number 42",
+      "text":"The ultimate answer, for the ultimate question, 42. Adams Douglas, introduces this concept in his book The Hitchhiker's Guide to the Galaxy in a BBC News report...",
+      "by":"Ayberk",
+      "route":"post5"
+    },
+    {
+      "img":"assets/6.jpg",
+      "title":"The Number 42",
+      "text":"The ultimate answer, for the ultimate question, 42. Adams Douglas, introduces this concept in his book The Hitchhiker's Guide to the Galaxy in a BBC News report...",
+      "by":"Ayberk",
+      "route":"post6"
+    },
+    {
+      "img":"assets/6.jpg",
+      "title":"The Number 42",
+      "text":"The ultimate answer, for the ultimate question, 42. Adams Douglas, introduces this concept in his book The Hitchhiker's Guide to the Galaxy in a BBC News report...",
+      "by":"Ayberk",
+      "route":"post7"
+    },
+    {
+      "img":"assets/6.jpg",
+      "title":"The Number 42",
+      "text":"The ultimate answer, for the ultimate question, 42. Adams Douglas, introduces this concept in his book The Hitchhiker's Guide to the Galaxy in a BBC News report...",
+      "by":"Ayberk",
+      "route":"post8"
     },
   ];
 
@@ -92,7 +128,7 @@ class GridText extends StatelessWidget {
     return Container(
       color: Colors.white,
       child: Container(
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             border: Border(
                 right: BorderSide(width: 0.1,color:Colors.black12,),
                 bottom:BorderSide(width: 0.1,color:Colors.black12,) ),
@@ -114,7 +150,7 @@ class GridText extends StatelessWidget {
                    ),
                  ),),
                   TextButton(onPressed: (){
-                    Navigator.pushReplacementNamed(context, "/" + route.toLowerCase());
+                    Navigator.pushReplacementNamed(context, "/${route.toLowerCase()}");
                   }, child: Text(
                     title,
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize:screenWidth < 426 ? 30 : 38,color: Colors.black),
@@ -123,13 +159,13 @@ class GridText extends StatelessWidget {
                     margin: EdgeInsets.only(top: screenWidth < 321 ? 10 : screenWidth < 426 ? 0 :10,bottom:screenWidth < 321? 10 : screenWidth < 426 ? 0 :10),
                     child: RichText(text: TextSpan(
                         text: "Posted By ",
-                        style: TextStyle(fontWeight: FontWeight.bold,color: Colors.black),
+                        style: const TextStyle(fontWeight: FontWeight.bold,color: Colors.black),
                         children: [
-                          TextSpan(text:by,style: TextStyle(fontWeight: FontWeight.normal))
+                          TextSpan(text:by,style: const TextStyle(fontWeight: FontWeight.normal))
                         ]
                     )),
                   ),
-                  Container(
+                  SizedBox(
                     width: 300,
                     child: Text(text,style: TextStyle(fontFamily: "Inter",fontSize: screenWidth < 426 ? 20 : 22),),
                   ),
@@ -139,5 +175,4 @@ class GridText extends StatelessWidget {
       ),
     );
   }
-
 }
