@@ -73,14 +73,18 @@ class _CarouselState extends State<Carousel> {
                         children: [
                           Row(
                             children: [
-                              AnimatedDefaultTextStyle(
-                                  style: TextStyle(
-                                    color: Colors.white.withOpacity(opacitytxt),
-                                  ),
+                              AnimatedOpacity(
+                                opacity: opacitytxt,
                                   duration: const Duration(seconds: 1),
-                                  child: Text(
-                                    contents[imgList.indexOf(item)]["category"] + "    ",
-                                  )),
+                                  child: RichText(text:TextSpan(text:"Category: ",
+                                      style: TextStyle(fontWeight: FontWeight.bold,color:Colors.white.withOpacity(opacitytxt)),
+                                      children:[
+                                        TextSpan(text:contents[imgList.indexOf(item)]["category"] +"    ",
+                                            style: TextStyle(fontWeight: FontWeight.normal))
+                                      ]
+                                  )
+                                  ),
+                              ),
                               AnimatedDefaultTextStyle(
                                   style: TextStyle(
                                       color: Colors.white.withOpacity(opacity)),
@@ -203,9 +207,19 @@ class _mobileCarouselState extends State<mobileCarousel> {
                   children: [
                     Row(
                       children: [
-                        AnimatedDefaultTextStyle(style: TextStyle(
-                          color:Colors.white.withOpacity(opacitytxt),
-                        ), duration: const Duration(seconds: 1), child:Text( contents[imgList.indexOf(item)]["category"] +"    ",)),
+                        AnimatedOpacity(
+                          opacity:opacitytxt,
+                          duration: const Duration(seconds: 1),
+                            child:RichText(text:TextSpan(text:"Category: ",
+                                style: TextStyle(fontWeight: FontWeight.bold,color:Colors.white),
+                                children:[
+                                  TextSpan(text:contents[imgList.indexOf(item)]["category"] +"    ",
+                                      style: TextStyle(fontWeight: FontWeight.normal))
+                                ]
+                              )
+                            ),
+                            // child:Text( contents[imgList.indexOf(item)]["category"] +"    ",)
+                        ),
                         AnimatedDefaultTextStyle(style: TextStyle(
                                 color: Colors.white.withOpacity(opacity)
                             ),
