@@ -102,7 +102,7 @@ class _MobileViewContactState extends State<MobileViewContact> with TickerProvid
                                             "However, I will probably answer on the phone the fastest."
                                           ,style: TextStyle(fontFamily: "Inter",fontSize: 25,letterSpacing: 1.2),),
                                       ),
-                                      screenWidth < 376 ? Column(
+                                      screenWidth < 426 ? Column(
                                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                         children: [
                                           Column(
@@ -114,7 +114,7 @@ class _MobileViewContactState extends State<MobileViewContact> with TickerProvid
                                                 ),),
                                                 RichText(text:TextSpan(
                                                     text: "Mobile Phone: +90 (533) 840 28 02",
-                                                    style: const TextStyle(fontFamily: "Inter",fontSize: 15),
+                                                    style: const TextStyle(fontFamily: "Inter",fontSize: 15,color:Colors.black),
                                                     recognizer: TapGestureRecognizer()..onTap = ()async{
                                                       final Uri launchUri = Uri(
                                                           scheme: 'tel',
@@ -127,7 +127,7 @@ class _MobileViewContactState extends State<MobileViewContact> with TickerProvid
                                                 ) ),
                                                 RichText(text: TextSpan(
                                                     text: "Email Address: kurtknispel9@gmail.com",
-                                                    style: const TextStyle(fontFamily: "Inter",fontSize: 15),
+                                                    style: const TextStyle(fontFamily: "Inter",fontSize: 15,color:Colors.black),
                                                     recognizer: TapGestureRecognizer()..onTap = ()async{
                                                       String email = 'kurtknispel9@gmail.com';
                                                       String subject = 'Hello';
@@ -166,7 +166,7 @@ class _MobileViewContactState extends State<MobileViewContact> with TickerProvid
                                                     text:"GitHub",
                                                     style:const TextStyle(fontFamily: "Inter",
                                                         letterSpacing: 0.5,
-                                                        height: 1.5,fontSize: 15),
+                                                        height: 1.5,fontSize: 15,color:Colors.black),
                                                     recognizer: TapGestureRecognizer()..onTap = ()async{
                                                       final Uri url=Uri.parse('https://github.com/pnzrkmpfwgn');
                                                       if(await canLaunchUrl(url)){
@@ -174,7 +174,7 @@ class _MobileViewContactState extends State<MobileViewContact> with TickerProvid
                                                       }
                                                     },
                                                     children:[
-                                                      TextSpan(text:"\nLinkedin",
+                                                      TextSpan(text:"\nLinkedin",style: TextStyle(color:Colors.black),
                                                           recognizer:TapGestureRecognizer()..onTap = ()async{
                                                             final Uri url=Uri.parse('https://www.linkedin.com/in/ülkü-ayberk-yiğit-1b54b01b3/');
                                                             if(await canLaunchUrl(url)){
