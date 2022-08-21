@@ -18,17 +18,20 @@ class _CarouselState extends State<Carousel> {
     {
       "title":"The Number 42",
       "category":"Philosophy",
-      "route":"post1"
+      "route":"post1",
+      "color":"black",
     },
     {
       "title":"The Goddess of City Pop",
       "category":"Music",
-      "route":"post2"
+      "route":"post2",
+      "color":"white",
     },
     {
       "title":"The Roko's Basilisk",
       "category":"Technology",
-      "route":"post3"
+      "route":"post3",
+      "color":"white"
     }
   ];
 
@@ -60,7 +63,8 @@ class _CarouselState extends State<Carousel> {
                       image: DecorationImage(
                         fit: BoxFit.cover,
                         colorFilter: ColorFilter.mode(
-                            Colors.black.withOpacity(1), BlendMode.dstATop),
+                          contents[imgList.indexOf(item)]["color"]=="black" ? Colors.black.withOpacity(1) :Colors.white.withOpacity(1),
+                            BlendMode.dstATop),
                         image: AssetImage(item),
                       ),
                     ),
@@ -77,7 +81,7 @@ class _CarouselState extends State<Carousel> {
                                 opacity: opacitytxt,
                                   duration: const Duration(seconds: 1),
                                   child: RichText(text:TextSpan(text:"Category: ",
-                                      style: TextStyle(fontWeight: FontWeight.bold,color:Colors.white.withOpacity(opacitytxt)),
+                                      style: TextStyle(fontWeight: FontWeight.bold,color: contents[imgList.indexOf(item)]["color"]=="black" ? Colors.black.withOpacity(opacitytxt) :Colors.white.withOpacity(opacitytxt)),
                                       children:[
                                         TextSpan(text:contents[imgList.indexOf(item)]["category"] +"    ",
                                             style: TextStyle(fontWeight: FontWeight.normal))
@@ -87,7 +91,8 @@ class _CarouselState extends State<Carousel> {
                               ),
                               AnimatedDefaultTextStyle(
                                   style: TextStyle(
-                                      color: Colors.white.withOpacity(opacity)),
+                                      color: contents[imgList.indexOf(item)]["color"]=="black" ? Colors.black.withOpacity(opacity) :Colors.white.withOpacity(opacity)
+                                   ),
                                   duration: const Duration(seconds: 1),
                                   child: const Text(
                                     "Posted by  ",
@@ -96,8 +101,8 @@ class _CarouselState extends State<Carousel> {
                                   )),
                               AnimatedDefaultTextStyle(
                                   style: TextStyle(
-                                      color:
-                                          Colors.white.withOpacity(opacitytxt)),
+                                      color: contents[imgList.indexOf(item)]["color"]=="black" ? Colors.black.withOpacity(opacity) :Colors.white.withOpacity(opacity)
+                                          ),
                                   duration: const Duration(seconds: 1),
                                   child: const Text("Ayberk")),
                             ],
@@ -115,7 +120,7 @@ class _CarouselState extends State<Carousel> {
                                   style:  TextStyle(
                                   fontSize: 60.0,
                                   fontFamily: "DMSerifText",
-                                  color:Colors.white
+                                      color: contents[imgList.indexOf(item)]["color"]=="black" ? Colors.black :Colors.white
                                   ),
                                   ),
                                   )
@@ -149,17 +154,20 @@ class _mobileCarouselState extends State<mobileCarousel> {
     {
       "title":"The Number 42",
       "category":"Philosophy",
-      "route":"post1"
+      "route":"post1",
+      "color":"black"
     },
     {
       "title":"The Goddess of City Pop",
       "category":"Music",
-      "route":"post2"
+      "route":"post2",
+      "color":"white"
     },
     {
       "title":"The Roko's Basilisk",
       "category":"Technology",
-      "route":"post3"
+      "route":"post3",
+      "color":"white"
     }
   ];
 
@@ -211,7 +219,7 @@ class _mobileCarouselState extends State<mobileCarousel> {
                           opacity:opacitytxt,
                           duration: const Duration(seconds: 1),
                             child:RichText(text:TextSpan(text:"Category: ",
-                                style: TextStyle(fontWeight: FontWeight.bold,color:Colors.white),
+                                style: TextStyle(fontWeight: FontWeight.bold,color: contents[imgList.indexOf(item)]["color"]=="black" ? Colors.black :Colors.white),
                                 children:[
                                   TextSpan(text:contents[imgList.indexOf(item)]["category"] +"    ",
                                       style: TextStyle(fontWeight: FontWeight.normal))
@@ -221,7 +229,7 @@ class _mobileCarouselState extends State<mobileCarousel> {
                             // child:Text( contents[imgList.indexOf(item)]["category"] +"    ",)
                         ),
                         AnimatedDefaultTextStyle(style: TextStyle(
-                                color: Colors.white.withOpacity(opacity)
+                            color: contents[imgList.indexOf(item)]["color"]=="black" ? Colors.black.withOpacity(opacity) :Colors.white.withOpacity(opacity)
                             ),
                             duration: const Duration(seconds: 1), child:
                         const Text("Posted by  ",
@@ -230,7 +238,7 @@ class _mobileCarouselState extends State<mobileCarousel> {
                           ),
                         )),
                         AnimatedDefaultTextStyle(style:TextStyle(
-                                color: Colors.white.withOpacity(opacitytxt)
+                            color: contents[imgList.indexOf(item)]["color"]=="black" ? Colors.black.withOpacity(opacitytxt) :Colors.white.withOpacity(opacitytxt)
                             ) ,
                             duration: const Duration(seconds: 1), child: const Text("Ayberk")),
                       ],
@@ -247,10 +255,10 @@ class _mobileCarouselState extends State<mobileCarousel> {
                                 duration: const Duration(milliseconds: 1500),
                                 child:  Text(
                                   contents[imgList.indexOf(item)]["title"],
-                                  style:  TextStyle(
+                                  style: TextStyle(
                                       fontSize: 60.0,
                                       fontFamily: "DMSerifText",
-                                      color:Colors.white
+                                      color: contents[imgList.indexOf(item)]["color"]=="black" ? Colors.black :Colors.white
                                   ),
                                 ),
                               )

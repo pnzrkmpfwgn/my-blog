@@ -139,11 +139,11 @@ class _MobileViewPost1State extends State<MobileViewPost1> with TickerProviderSt
                                        children: [
                                          TextButton(onPressed: (){
                                            Navigator.pushReplacementNamed(context, "/post2");
-                                         }, child: const Text("<Next",style: TextStyle(fontWeight: FontWeight.bold,color:Colors.black,fontSize: 20),)),
+                                         }, child: const Text("Next>",style: TextStyle(fontWeight: FontWeight.bold,color:Colors.black,fontSize: 20),)),
                                          const Text("---",style: TextStyle(fontWeight: FontWeight.bold,color:Colors.black,fontSize: 20),),
                                          TextButton(onPressed: (){
                                            Navigator.pushReplacementNamed(context, "/post8");
-                                         }, child: const Text("Previous>",style: TextStyle(fontWeight: FontWeight.bold,color:Colors.black,fontSize: 20),)),
+                                         }, child: const Text("<Previous",style: TextStyle(fontWeight: FontWeight.bold,color:Colors.black,fontSize: 20),)),
                                        ],
                                      ),
                                    ),

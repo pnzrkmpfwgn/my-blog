@@ -60,36 +60,35 @@ class _CategoriesState extends State<Categories> with TickerProviderStateMixin {
                           TextButton(child:const Text("The Number 42",style: TextStyle(color:Colors.black),),onPressed: (){
                             Navigator.pushReplacementNamed(context,"/post1");
                           },),
-                          TextButton(child:const Text("",style: TextStyle(color:Colors.black),),onPressed: (){
-                            Navigator.pushReplacementNamed(context,"/post2");
+                          TextButton(child:const Text("Shameless Virtue",style: TextStyle(color:Colors.black),),onPressed: (){
+                            Navigator.pushReplacementNamed(context,"/post4");
                           }),
-                          TextButton(child:const Text("Title",style: TextStyle(color:Colors.black),),onPressed: (){
-                            Navigator.pushReplacementNamed(context,"/post3");
+                          TextButton(child:const Text("Eight Spiders",style: TextStyle(color:Colors.black),),onPressed: (){
+                            Navigator.pushReplacementNamed(context,"/post7");
                           }),
                         ],)),
                       const Flexible(child: Text("Music",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 30,fontFamily: "DMSerifText"),),),
                       Flexible(child: Column(
                         children: [
-                          TextButton(child:const Text("Title",style: TextStyle(color:Colors.black),),onPressed: (){
-                            Navigator.pushReplacementNamed(context,"/post4");
+                          TextButton(child:const Text("The Goddess Of City Pop",style: TextStyle(color:Colors.black),),onPressed: (){
+                            Navigator.pushReplacementNamed(context,"/post2");
                           },),
-                          TextButton(child:const Text("Title",style: TextStyle(color:Colors.black),),onPressed: (){
+                          TextButton(child:const Text("VaporWave",style: TextStyle(color:Colors.black),),onPressed: (){
                             Navigator.pushReplacementNamed(context,"/post5");
-                          }),
-                          TextButton(child:const Text("Title",style: TextStyle(color:Colors.black),),onPressed: (){
-                            Navigator.pushReplacementNamed(context,"/post6");
                           }),
                         ],)),
                       const Flexible(child: Text("Technology",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 30,fontFamily: "DMSerifText"),),),
                       Flexible(child: Column(
                         children: [
-                          TextButton(child:const Text("Title",style: TextStyle(color:Colors.black),),onPressed: (){
-                            Navigator.pushReplacementNamed(context,"/post7");
+                          TextButton(child:const Text("Roko's Basilisk",style: TextStyle(color:Colors.black),),onPressed: (){
+                            Navigator.pushReplacementNamed(context,"/post3");
                           },),
-                          TextButton(child:const Text("Title",style: TextStyle(color:Colors.black),),onPressed: (){
+                          TextButton(child:const Text("Dyson Sphere",style: TextStyle(color:Colors.black),),onPressed: (){
+                            Navigator.pushReplacementNamed(context,"/post6");
+                          }),
+                          TextButton(child:const Text("The Antikythera Mechanism",style: TextStyle(color:Colors.black),),onPressed: (){
                             Navigator.pushReplacementNamed(context,"/post8");
                           }),
-
                         ],))
                     ],
                   ),
