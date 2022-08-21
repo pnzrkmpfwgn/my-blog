@@ -46,9 +46,7 @@ class FooterDesktop extends StatelessWidget {
                                     top: BorderSide(width: 0.3,color: Colors.black)
                                 )
                             ),
-                            child: const Text("Lorem ipsum Ut velit dolor Ut labore id fugiat in ut fugiat nostrud qui in dolore commodo "
-                                "eu magna Duis cillum dolor officia esse mollit In reprehenderit commodo aliqua irure."
-                                " proident Excepteur exercitation nulla. Lorem ipsum. ",
+                            child: const Text("This is a blog website created with Flutter Platform for some reason.",
                                 style:TextStyle(fontFamily: "Inter",letterSpacing: 0.5,height: 1.5)
                             ),
                           )
@@ -186,9 +184,7 @@ class FooterDesktop extends StatelessWidget {
                                 top: BorderSide(width: 0.3,color: Colors.black)
                             )
                         ),
-                        child: const Text("Lorem ipsum Ut velit dolor Ut labore id fugiat in ut fugiat nostrud qui in dolore commodo "
-                            "eu magna Duis cillum dolor officia esse mollit In reprehenderit commodo aliqua irure."
-                            " proident Excepteur exercitation nulla. Lorem ipsum. ",
+                        child: const Text("This is a blog website created with Flutter Platform for some reason.",
                             style:TextStyle(fontFamily: "Inter",letterSpacing: 0.5,height: 1.5)
                         ),
                       )
