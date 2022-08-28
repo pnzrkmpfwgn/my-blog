@@ -1,6 +1,8 @@
-# blog
+# Blog
 
-A new Flutter project.
+This is a blog in case of you didn't read the title.
+Here's the link:
+(Link)[https://blog-23760.web.app/#/home]
 
 ## Getting Started
 
